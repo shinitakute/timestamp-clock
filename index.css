@@ -1,9 +1,14 @@
 body {
+    margin: 0;
     background-color: #2d2d2d;
 }
 
 #timedate {
-    font: small-caps lighter 30vmin "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    font: small-caps lighter 33vh "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
     text-align: center;
+    white-space: nowrap;
     color: #fff;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
