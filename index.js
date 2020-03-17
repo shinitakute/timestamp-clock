@@ -25,11 +25,16 @@ function updateClock() {
     var viewportHeight = document.documentElement.clientHeight;
     var fontSize = viewportHeight*30*0.01;
     var font = "small-caps lighter " + fontSize + "px Segoe UI";
-    var timeWidth = getTextWidth(hr.pad(2) + ":" + min.pad(2) + ":" + sec.pad(2) + ".000", font);
+    var date = months[month] + " " + day + ", " + year;
+    var time = hr.pad(2) + ":" + min.pad(2) + ":" + sec.pad(2);
+    var dateWidth = getTextWidth(date, font);
+    var timeWidth = getTextWidth(time + ".000", font);
 
-    document.getElementById("date").firstChild.nodeValue = months[month] + " " + day + ", " + year;
+    document.getElementById("date").style.width = dateWidth;
+    document.getElementById("date").firstChild.nodeValue = date;
+    document.getElementById("time").style.width = timeWidth;
     document.getElementById("time").style.marginLeft = (viewportWidth/2 - timeWidth/2) + "px";
-    document.getElementById("time").firstChild.nodeValue = hr.pad(2) + ":" + min.pad(2) + ":" + sec.pad(2) + "." + ms;
+    document.getElementById("time").firstChild.nodeValue = time + ms;
 }
 
 function init() {
