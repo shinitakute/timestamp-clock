@@ -34,7 +34,7 @@ function updateClock() {
     document.getElementById("date").firstChild.nodeValue = date;
     document.getElementById("time").style.width = timeWidth;
     document.getElementById("time").style.marginLeft = (viewportWidth/2 - timeWidth/2) + "px";
-    document.getElementById("time").firstChild.nodeValue = time + ms;
+    document.getElementById("time").firstChild.nodeValue = time + "." + ms;
 }
 
 function init() {
