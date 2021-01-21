@@ -1,34 +1,29 @@
-Number.prototype.pad = function(n) {
-    for (var r = this.toString(); r.length < n; r = 0 + r);
-    return r;
-};
-
 function getTextWidth(text, font) {
-    var canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
-    var context = canvas.getContext("2d");
+    let canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+    let context = canvas.getContext("2d");
     context.font = font;
-    var metrics = context.measureText(text);
+    let metrics = context.measureText(text);
     return metrics.width;
 }
 
 function updateClock() {
-    var now = new Date();
-    var ms = now.getMilliseconds(),
-        sec = now.getSeconds(),
-        min = now.getMinutes(),
-        hr = now.getHours(),
-        month = now.getMonth(),
-        day = now.getDate(),
-        year = now.getFullYear();
-    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    var viewportWidth = document.documentElement.clientWidth;
-    var viewportHeight = document.documentElement.clientHeight;
-    var fontSize = viewportHeight*30*0.01;
-    var font = "small-caps lighter " + fontSize + "px Segoe UI";
-    var date = months[month] + " " + day + ", " + year;
-    var time = hr.pad(2) + ":" + min.pad(2) + ":" + sec.pad(2);
-    var dateWidth = getTextWidth(date, font);
-    var timeWidth = getTextWidth(time + ".000", font);
+    let timeZone = "Asia/Tokyo";
+
+    let now = new Date();
+    let date = now.toLocaleDateString("ja-JP",
+        {timeZone: timeZone, month: "long", day: "numeric", year: "numeric"});
+    let time = now.toLocaleTimeString("ja-JP",
+        {timeZone: timeZone, hour12: false, hour: "2-digit", minute: "2-digit", second: "2-digit"});
+
+    let ms = now.getMilliseconds();
+
+    let viewportWidth = document.documentElement.clientWidth;
+    let viewportHeight = document.documentElement.clientHeight;
+    let fontSize = viewportHeight * 30 * 0.01;
+    let font = "small-caps lighter " + fontSize + "px Segoe UI";
+
+    let dateWidth = getTextWidth(date, font);
+    let timeWidth = getTextWidth(time + ".000", font);
 
     document.getElementById("date").style.width = dateWidth;
     document.getElementById("date").firstChild.nodeValue = date;
